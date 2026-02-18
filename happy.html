@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+
+/* Body with Background Image */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: url("c:\Users\admin\Downloads\Screenshot 2026-02-18 232520.png0.png") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+
+
+/* Dark Overlay */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
+}
+
+/* Stars */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 2s infinite alternate;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+/* Main Content */
+.container {
+    position: relative;
+    top: 30%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+h1 {
+    font-size: 3.2rem;
+    text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+}
+
+p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+/* Button */
+button {
+    padding: 12px 30px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Balloons */
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    animation: float 8s linear infinite;
+    z-index: 1;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: white;
+    top: 80px;
+    left: 50%;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-120vh); }
+}
+
+/* Photo Frames */
+.photo-frame {
+    position: absolute;
+    width: 150px;
+    height: 190px;
+    border: 5px solid white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff00ff;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: 1s ease;
+    z-index: 2;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Frame Positions */
+.frame1 { top: 10%; left: 5%; }
+.frame2 { top: 60%; left: 8%; }
+.frame3 { top: 10%; right: 5%; }
+.frame4 { top: 60%; right: 8%; }
+
+/* Bottom Center Frame */
+.frame5 {
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.5);
+}
+
+/* Show Animation */
+.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Firework Particles */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1.5s ease-out forwards;
+    z-index: 3;
+}
+
+@keyframes explode {
+    from { transform: translate(0,0); opacity: 1; }
+    to { transform: translate(var(--x), var(--y)); opacity: 0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 5 Photo Frames -->
+<div class="photo-frame frame1"><img src="c:\Users\admin\Downloads\Screenshot 2026-02-18 232350.png"></div>
+<div class="photo-frame frame2"><img src="c:\Users\admin\Downloads\Screenshot 2026-02-18 232313.png"></div>
+<div class="photo-frame frame3"><img src="c:\Users\admin\Downloads\Screenshot 2026-02-18 232423.png"></div>
+<div class="photo-frame frame4"><img src="c:\Users\admin\Downloads\Screenshot 2026-02-18 232239.png"></div>
+<div class="photo-frame frame5"><img src="c:\Users\admin\Downloads\Screenshot 2026-02-18 232145.png"></div>
+
+<!-- Main Content -->
+<div class="container">
+    <h1 id="wish">🎂 Happy Birthday 🎉</h1>
+    <p id="message">Click below for a surprise 🎆</p>
+    <button onclick="celebrate()">Celebrate 🎁</button>
+</div>
+
+<script>
+
+/* Stars */
+for (let i = 0; i < 150; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (1 + Math.random() * 2) + "s";
+    document.body.appendChild(star);
+}
+
+/* Balloons */
+for (let i = 0; i < 8; i++) {
+    let balloon = document.createElement("div");
+    balloon.className = "balloon";
+    balloon.style.left = Math.random() * 100 + "vw";
+    balloon.style.backgroundColor = `hsl(${Math.random()*360},70%,60%)`;
+    balloon.style.animationDuration = (6 + Math.random() * 4) + "s";
+    document.body.appendChild(balloon);
+}
+
+/* Celebrate Function */
+function celebrate() {
+
+    document.getElementById("wish").innerHTML =
+        "🎉 Many Many Happy Returns of the Day! 🎉 Sanju 💖";
+
+    document.getElementById("message").innerHTML =
+        "May your day be filled with joy, love & happiness! 💖 I am sorry for everything if I did anything wrong.";
+
+    launchFireworks();
+    showPhotos();
+}
+
+/* Show Photos */
+function showPhotos() {
+    let frames = document.querySelectorAll(".photo-frame");
+    frames.forEach((frame, index) => {
+        setTimeout(() => {
+            frame.classList.add("show");
+        }, index * 400);
+    });
+}
+
+/* Fireworks */
+function launchFireworks() {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            createExplosion(
+                Math.random() * window.innerWidth,
+                Math.random() * window.innerHeight / 2
+            );
+        }, i * 500);
+    }
+}
+
+function createExplosion(x, y) {
+    for (let i = 0; i < 40; i++) {
+        let particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.backgroundColor =
+            `hsl(${Math.random()*360},100%,60%)`;
+        particle.style.left = x + "px";
+        particle.style.top = y + "px";
+        particle.style.setProperty('--x',
+            (Math.random()*200-100) + "px");
+        particle.style.setProperty('--y',
+            (Math.random()*200-100) + "px");
+        document.body.appendChild(particle);
+
+        setTimeout(() => particle.remove(), 1500);
+    }
+}
+
+</script>
+
+</body>
+</html>
